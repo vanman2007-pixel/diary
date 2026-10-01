@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: private-diary
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /var/data/diary.db
+      - key: HTTPS_ONLY
+        value: "true"
+    disk:
+      name: diary-data
+      mountPath: /var/data
+      sizeGB: 1

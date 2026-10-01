@@ -1,29 +1,18 @@
-# Diary — Full Stack Python Journal
+# Private Diary
 
-A personal diary web app built with FastAPI + SQLite + HTML/CSS/JavaScript.
+Multi-user private diary with account login, private entries/photos, entry locks, moods, themes, calendar hover previews, light/dark mode, and persistent storage support.
 
-Features:
-- Create, edit, delete diary entries
-- Automatic date/time
-- Photo upload on entries
-- Mood scale and mood-based themes
-- Calendar with written/missed days
-- Light/dark mode
-- Custom visual themes
-- Password-protected individual entries
-- Secure password hashing
-- SQLite persistence
+## Local Windows run
 
-## Run locally
-
-```bash
+```cmd
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn backend.main:app --reload
+python -m uvicorn backend.main:app --reload
 ```
 
 Open http://127.0.0.1:8000
 
-Photos are stored in `data/uploads`.
-The database is created automatically at `data/diary.db`.
+## Production
+
+Use persistent storage for `data/diary.db` and `data/uploads`. `render.yaml` is included for a Render web service with a persistent disk. Set a strong `SECRET_KEY` in production. Do not commit the database or uploads.
